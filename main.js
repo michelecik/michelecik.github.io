@@ -1,6 +1,5 @@
 $(document).ready(function () {
 
-    
         function pageTransition() {
             var tl = gsap.timeline()
         }
@@ -35,5 +34,4 @@ $(document).ready(function () {
                 }
             }]
         });
-    }
 })
