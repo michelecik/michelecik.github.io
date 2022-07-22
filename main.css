@@ -166,7 +166,8 @@ nav {
 .images_container img {
     position: absolute;
     width: 400px;
-    height: 600px;
+    max-height: 600px;
+    height: 0%;
     object-fit: cover;
     left: calc(50% - 200px);
     top: calc(50% - 300px);
