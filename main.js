@@ -309,7 +309,7 @@ menuElements.forEach((element) => {
 
     element.addEventListener('mouseleave', () => onMouseLeave(meshType))
 
-    element.addEventListener('click', (e) => onClick(e, meshType, element))
+    // element.addEventListener('click', (e) => onClick(e, meshType, element))
 });
 
 camera.position.z = 5;
