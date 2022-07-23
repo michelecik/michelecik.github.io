@@ -17,27 +17,3 @@ elements.forEach((element) => {
     element.appendChild(textContainer);
     element.appendChild(textContainer.cloneNode(true));
 });
-
-elements.forEach((element) => {
-
-    let currentImage = ''
-
-    element.addEventListener("mouseover", () => {
-        let imageIndex = element.dataset.image;
-        currentImage = document.getElementById(imageIndex)
-        currentImage.classList.add('current')
-        let tl = gsap.to(currentImage, {
-            duration: .4,
-            transform: 'translate(0)',
-            opacity: .8,
-        })
-    });
-
-    element.addEventListener('mouseout', (e) => {
-        let tl = gsap.to(currentImage, {
-            duration: .4,
-            transform: 'translate(0, 50px)',
-            opacity: 0
-        })
-    })
-});

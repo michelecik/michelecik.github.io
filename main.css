@@ -22,7 +22,16 @@ li a {
     color: #333;
 }
 
+canvas {
+  z-index: -1;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+}
+
 .wrapper {
+  z-index: 1;
     display: flex;
     flex-direction: column;
     max-width: 1200px;
@@ -32,14 +41,15 @@ li a {
 
 nav {
     margin: 0 auto;
-    width: 80vw;
     display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     justify-content: space-between;
     
 }
 
 .rolling-text {
-    mix-blend-mode: difference;
+    /* mix-blend-mode: difference; */
     line-height: 30px;
     height: 30px;
     overflow: hidden;
@@ -156,6 +166,10 @@ nav {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.content__title {
+  width: 80vw;
 }
 
 .images_container {
