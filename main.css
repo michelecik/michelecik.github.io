@@ -51,6 +51,7 @@ nav {
 .rolling-text {
     /* mix-blend-mode: difference; */
     line-height: 30px;
+    font-size: 30px;
     height: 30px;
     overflow: hidden;
     display: inline-block;

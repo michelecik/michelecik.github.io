@@ -293,7 +293,7 @@ function onClick(e, meshType, element) {
     console.log(e.target.closest('a').getAttribute('href'))
     let target = e.target.closest('a')
     let href = target.getAttribute('href')
-    makeMeshBigger(meshType, href);
+    // makeMeshBigger(meshType, href);
 }
 // elementi menu
 const menuElements = document.querySelectorAll('.rolling-text')
@@ -309,7 +309,7 @@ menuElements.forEach((element) => {
 
     element.addEventListener('mouseleave', () => onMouseLeave(meshType))
 
-    // element.addEventListener('click', (e) => onClick(e, meshType, element))
+    //element.addEventListener('click', (e) => onClick(e, meshType, element))
 });
 
 camera.position.z = 5;
