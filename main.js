@@ -38,9 +38,21 @@ scene.add(ambientLight)
 
 const gltfLoader = new THREE.GLTFLoader();
 
-gltfLoader.load('models/chiave.gltf', (gltf) => {
-    console.log(gltf)
+let key
+let exp
+
+gltfLoader.load('./models/chiave.gltf', (gltf) => {
+    key = gltf.scene.children[0]
+    // key.rotation.x = 1
+    // key.position.y = -1
+    // key.center()
 })
+
+gltfLoader.load('./models/exp.gltf', (gltf) => {
+    console.log(gltf.scene.children)
+    exp = gltf.scene.children[0]
+})
+
 
 const cubeGeometry = new THREE.BoxGeometry(1, 1, 1);
 const cubeMaterial = new THREE.MeshLambertMaterial({ color: 0x5c5e61 });
@@ -62,8 +74,7 @@ const helper = new THREE.DirectionalLightHelper(directionalLight, 5);
 
 
 
-window.addEventListener('resize', () =>
-{
+window.addEventListener('resize', () => {
     // Update sizes
     sizes.width = window.innerWidth
     sizes.height = window.innerHeight
@@ -105,7 +116,7 @@ function drawSomething(meshType) {
             break
         case 'torus':
             scene.add(torus)
-            let tl = gsap.timeline({ duration: .3 }).fromTo(torus.scale, {
+            gsap.timeline({ duration: .3 }).fromTo(torus.scale, {
                 x: 0.01,
                 y: 0.01,
                 z: 0.01,
@@ -113,6 +124,30 @@ function drawSomething(meshType) {
                 x: 1,
                 y: 1,
                 z: 1
+            })
+            break
+        case 'exp':
+            scene.add(exp)
+            gsap.timeline({ duration: .3 }).fromTo(exp.scale, {
+                x: 0.01,
+                y: 0.01,
+                z: 0.01,
+            }, {
+                x: 40,
+                y: 40,
+                z: 40
+            })
+            break
+        case 'key':
+            scene.add(key)
+            gsap.timeline({ duration: .3 }).fromTo(key.scale, {
+                x: 0.01,
+                y: 0.01,
+                z: 0.01,
+            }, {
+                x: 40,
+                y: 40,
+                z: 40
             })
             break
         default:
@@ -152,6 +187,28 @@ function removeFromScene(meshType) {
                 }
             })
             break
+        case 'exp':
+            gsap.to(exp.scale, {
+                duration: .3,
+                x: 0.01,
+                y: 0.01,
+                z: 0.01,
+                onComplete: () => {
+                    scene.remove(exp)
+                }
+            })
+            break
+        case 'key':
+            gsap.to(key.scale, {
+                duration: .3,
+                x: 0.01,
+                y: 0.01,
+                z: 0.01,
+                onComplete: () => {
+                    scene.remove(key)
+                }
+            })
+            break
         case 'torus':
             gsap.to(torus.scale, {
                 duration: .3,
@@ -175,9 +232,9 @@ function makeMeshBigger(meshType, path) {
                 x: 4,
                 y: 4,
                 z: 4,
-                onComplete: () => {
-                    window.location = path
-                }
+                // onComplete: () => {
+                //     window.location = path
+                // }
             }
             )
             break
@@ -188,9 +245,33 @@ function makeMeshBigger(meshType, path) {
                 x: 4,
                 y: 4,
                 z: 4,
-                onComplete: () => {
-                    window.location = path
-                }
+                // onComplete: () => {
+                //     window.location = path
+                // }
+            })
+            break
+        case 'exp':
+            gsap.to(exp.scale, {
+                duration: .3,
+                ease: "circ.out",
+                x: 4,
+                y: 4,
+                z: 4,
+                // onComplete: () => {
+                //     window.location = path
+                // }
+            })
+            break
+        case 'key':
+            gsap.to(key.scale, {
+                duration: .3,
+                ease: "circ.out",
+                x: 100,
+                y: 100,
+                z: 100,
+                // onComplete: () => {
+                //     window.location = path
+                // }
             })
             break
         case 'torus':
@@ -200,9 +281,9 @@ function makeMeshBigger(meshType, path) {
                 x: 2,
                 y: 2,
                 z: 2,
-                onComplete: () => {
-                    window.location = path
-                }
+                // onComplete: () => {
+                //     window.location = path
+                // }
             })
     }
 }
@@ -233,12 +314,14 @@ menuElements.forEach((element) => {
 
 camera.position.z = 5;
 
+
+
 const clock = new THREE.Clock()
 function animate() {
 
     const elapsedTime = clock.getElapsedTime()
 
-    
+
     requestAnimationFrame(animate);
 
     cube.rotation.y = elapsedTime
@@ -246,6 +329,17 @@ function animate() {
 
     sphere.position.y = Math.sin(2 * elapsedTime)
     sphere.position.x = Math.cos(elapsedTime)
+
+    if (key) {
+        // console.log(key)
+        key.rotation.y = -.75
+        key.rotation.z = 2 * elapsedTime
+    }
+
+    if(exp) {
+        exp.rotation.y = -.75
+        exp.rotation.x = 4*elapsedTime
+    }
 
     torus.rotation.y = 2 * elapsedTime
     torus.rotation.x = .3
