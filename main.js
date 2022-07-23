@@ -36,6 +36,12 @@ document.body.appendChild(renderer.domElement);
 const ambientLight = new THREE.AmbientLight(0xfff, 1);
 scene.add(ambientLight)
 
+const gltfLoader = new THREE.GLTFLoader();
+
+gltfLoader.load('models/chiave.gltf', (gltf) => {
+    console.log(gltf)
+})
+
 const cubeGeometry = new THREE.BoxGeometry(1, 1, 1);
 const cubeMaterial = new THREE.MeshLambertMaterial({ color: 0x5c5e61 });
 const cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
