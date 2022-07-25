@@ -222,19 +222,32 @@ function removeFromScene(meshType) {
     }
 }
 
+
+function menuAnimation(path) {
+    gsap.to(['.rolling-text'], {
+        duration: .3,
+        opacity: 0,
+        stagger: .3,
+        onComplete: () => {
+            window.location = path
+        }
+       })
+}
+
 function makeMeshBigger(meshType, path) {
+    
     switch (meshType) {
         case 'cube':
             gsap.to(
                 cube.scale, {
                 duration: .3,
                 ease: "circ.out",
-                x: 4,
-                y: 4,
-                z: 4,
-                // onComplete: () => {
-                //     window.location = path
-                // }
+                x: .01,
+                y: .01,
+                z: .01,
+                onComplete: () => {
+                    menuAnimation(path)
+                }
             }
             )
             break
@@ -242,62 +255,66 @@ function makeMeshBigger(meshType, path) {
             gsap.to(sphere.scale, {
                 duration: .3,
                 ease: "circ.out",
-                x: 4,
-                y: 4,
-                z: 4,
-                // onComplete: () => {
-                //     window.location = path
-                // }
+                x: .01,
+                y: .01,
+                z: .01,
+                onComplete: () => {
+                    menuAnimation(path)
+                }
             })
             break
-        case 'exp':
+        case 'exp':    
+        // rimuovere eventlistener su mouse out
             gsap.to(exp.scale, {
                 duration: .3,
                 ease: "circ.out",
-                x: 4,
-                y: 4,
-                z: 4,
-                // onComplete: () => {
-                //     window.location = path
-                // }
+                x: .01,
+                y: .01,
+                z: .01,
+                onComplete: () => {
+                    menuAnimation(path)
+                }
             })
             break
         case 'key':
             gsap.to(key.scale, {
                 duration: .3,
                 ease: "circ.out",
-                x: 100,
-                y: 100,
-                z: 100,
-                // onComplete: () => {
-                //     window.location = path
-                // }
+                x: .01,
+                y: .01,
+                z: .01,
+                onComplete: () => {
+                    menuAnimation(path)
+                }
             })
             break
         case 'torus':
             gsap.to(torus.scale, {
                 duration: .3,
                 ease: "circ.out",
-                x: 2,
-                y: 2,
-                z: 2,
-                // onComplete: () => {
-                //     window.location = path
-                // }
+                x: .01,
+                y: .01,
+                z: .01,
+                onComplete: () => {
+                    menuAnimation(path)
+                }
             })
     }
 }
 
+const menuElements = document.querySelectorAll('.rolling-text')
+
+
 function onClick(e, meshType, element) {
     e.preventDefault()
+    element.removeEventListener('onmouseleave', () => onMouseLeave(meshType))
+    console.log(element)
     console.log(e.target.closest('a').getAttribute('href'))
     let target = e.target.closest('a')
     let href = target.getAttribute('href')
+    makeMeshBigger(meshType, href);
     console.log(href)
-    // makeMeshBigger(meshType, href);
 }
-// elementi menu
-const menuElements = document.querySelectorAll('.rolling-text')
 
 menuElements.forEach((element) => {
 
@@ -337,9 +354,9 @@ function animate() {
         key.rotation.z = 2 * elapsedTime
     }
 
-    if(exp) {
+    if (exp) {
         exp.rotation.y = -.75
-        exp.rotation.x = 4*elapsedTime
+        exp.rotation.x = 4 * elapsedTime
     }
 
     torus.rotation.y = 2 * elapsedTime

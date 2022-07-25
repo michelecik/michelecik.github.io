@@ -11,37 +11,33 @@
 
     <script type="text/javascript" src="dat.gui.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r99/three.js"
         integrity="sha512-RixpleQfVXfhJUrmXlxWwitZGvMWk13+KhCsaYdeod5xryBN6gqo3RJ9xvaHn8VUeNuUnYfvzKBhLBnJnpEsgA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-        <script src="https://rawcdn.githack.com/mrdoob/three.js/r99/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="https://rawcdn.githack.com/mrdoob/three.js/r99/examples/js/loaders/GLTFLoader.js"></script>
 </head>
 
-<body>
+<body data-barba="wrapper">
     <canvas class="three"></canvas>
-    <div class="wrapper">
-        <div class="fade"></div>
+    <div class="fade"></div>
+    <div class="wrapper" data-barba="container" data-barba-namespace="home">
         <div class="content">
             <div class="content__title">
-                <h1>Hi, I'm Michele!</h1>
-                <h4>Welcome to asdas fancy CV</h4>
                 <nav class="content__navbar">
-                    <a data-mesh="cube" class="rolling-text" href="#">Home</a>
                     <a data-mesh="key" class="rolling-text" href="./skills.html">Skills</a>
-                    <a data-mesh="exp" class="rolling-text" href="./skills.html">Experience</a>
-                    <a data-mesh="torus" class="rolling-text" href="./skills.html">About</a>
-                    <a data-mesh="sphere" class="rolling-text" href="./skills.html">Contact</a>
+                    <a data-mesh="exp" class="rolling-text" href="./experience.html">Experience</a>
+                    <a data-mesh="torus" class="rolling-text" href="./about.html">About</a>
                 </nav>
             </div>
         </div>
     </div>
 
-    
-    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
+
     <script defer src="./main.js"></script>
+
 </body>
 
 </html>
