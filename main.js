@@ -376,7 +376,5 @@ function animate() {
     renderer.render(scene, camera);
 };
 
-(function() {
-    init();
- })();
+init();
 animate();
