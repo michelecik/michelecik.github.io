@@ -18,6 +18,17 @@ elements.forEach((element) => {
     element.appendChild(textContainer.cloneNode(true));
 });
 
+function init() {
+    gsap.fromTo('.rolling-text', {
+        duration: 1,
+        opacity: 0,
+    }, {
+        duration: 1,
+        opacity: 1,
+        stagger: .3
+    })
+}
+
 const sizes = {
     width: window.innerWidth,
     height: window.innerHeight
@@ -224,7 +235,7 @@ function removeFromScene(meshType) {
 
 
 function menuAnimation(path) {
-    gsap.to(['.rolling-text'], {
+    gsap.to('.rolling-text', {
         duration: .3,
         opacity: 0,
         stagger: .3,
@@ -366,4 +377,5 @@ function animate() {
 };
 
 
+init();
 animate();
