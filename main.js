@@ -1,3 +1,13 @@
+function docReady(fn) {
+    // see if DOM is already available
+    if (document.readyState === "complete" || document.readyState === "interactive") {
+        // call on next available tick
+        setTimeout(fn, 1);
+    } else {
+        document.addEventListener("DOMContentLoaded", fn);
+    }
+}  
+
 let elements = document.querySelectorAll(".rolling-text");
 
 elements.forEach((element) => {
@@ -18,7 +28,7 @@ elements.forEach((element) => {
     element.appendChild(textContainer.cloneNode(true));
 });
 
-function init() {
+docReady(() => {
     gsap.fromTo('.rolling-text', {
         duration: 1,
         opacity: 0,
@@ -27,9 +37,7 @@ function init() {
         opacity: 1,
         stagger: .3
     })
-}
-
-window.onload = init()
+})
 
 const sizes = {
     width: window.innerWidth,
