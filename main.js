@@ -29,6 +29,8 @@ function init() {
     })
 }
 
+window.onload = init()
+
 const sizes = {
     width: window.innerWidth,
     height: window.innerHeight
@@ -376,5 +378,4 @@ function animate() {
     renderer.render(scene, camera);
 };
 
-init();
 animate();
